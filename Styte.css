@@ -1,0 +1,89 @@
+body {
+    background-image: url(ASSETS/login.jpeg);
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat; 
+}
+
+.my-form__wrapper {
+    width: 400px;
+    padding: 20px;
+    background-color: #f8f9fa; 
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333; 
+    margin-bottom: 45px;
+}
+
+label {
+    display: block;
+    color: #555; 
+    font-size: 18px;
+    margin-bottom: 8px; 
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #007bff; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    transition: background-color 0.3s; 
+}
+
+button:hover {
+    background-color: #0056b3; 
+}
+
+a {
+    color: #007bff; 
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #0056b3; 
+}
+
+.my-form__wrapper div:last-child {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000; 
+}
+
+.logo {
+    width: 100px; 
+    height: auto; 
+}
