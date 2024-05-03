@@ -1,0 +1,107 @@
+body{
+    background-image: url(./assets/Desktop\ -\ 5.png);
+
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+
+}
+#principal {
+    background-image: url(./assets/Desktop\ -\ 5.png);
+}
+
+
+
+*¨{
+    font-family: 'Lato', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+    box-sizing: border-box;
+}
+form{
+    width: 600px;
+    border: 2px solid black;
+    padding: 6rem;
+    background-color: black;
+    border: nome;
+    border-radius:  20px;
+    -webkit-border-radius:  20px;
+    -moz-border-radius:  20px;
+    -ms-border-radius:  20px;
+    -o-border-radius:  20px;
+    color: aliceblue;
+    box-shadow:rgba(48, 48, 48, 0.6) 0.5rem 6px 26px 0rem;
+    position: absolute;
+    top: auto;
+    left: auto;
+    transform: translate(0%, 10%);
+    /*Ajustaelpuntodeanclajedelcentro*/margin: 0 auto;
+    /*Eliminamárgeneslateralesparacentradohorizontal*/;
+    -webkit-transform: translate(0%, 10%);
+    -moz-transform: translate(0%, 10%);
+    -ms-transform: translate(0%, 10%);
+    -o-transform: translate(0%, 10%);
+}
+
+h1{
+    display: block;
+    border: 2px solid black;
+    width: 95%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+
+}
+label{
+    color: #ffffff;
+    font-size: 18px;
+    padding: 10px;
+
+}
+input{
+    display: block;
+    border: 2px solid black;
+    width: 95%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+button{
+    float: right;
+    background-color: blue;
+    padding: .5rem;
+    color: white;
+    border: none;
+    width: 40%;
+    border-radius: 5px;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    margin-right: 10px;
+}
+button:hover{
+    background-color: azure;
+    color: blue;
+}
+a{
+    float: left;
+    margin-left: 10px;
+    padding: .5rem;
+    text-decoration: none;
+}
+a:hover{
+    color: white;
+}
