@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="logo-container">
-        <img src="ruta/a/tu/logo.png" alt="Logo" class="logo">
+        <img src="ASSETS./sigma.png" alt="Logo" class="logo">
     </div>
     <form action="IniSesion.php" method="POST" class="my-form__wrapper">
         <h1>BIENVENIDOS</h1>
@@ -24,12 +24,17 @@
             <label for="floatingPassword">Contraseña</label>
         </div>
         <div>
-            <a href="#">Olvidé mi Clave</a>
-            <a href="#">Cambiar mi Clave</a>
+            <a href="INDEXS/CambContra/CambioContra.html">Olvidé mi Clave</a>
+            <a href="INDEXS/CambContra/CambioContra.html">Cambiar mi Clave</a>
             <button type="submit">INICIO SESIÓN</button>
             <span>¿No tienes una cuenta?</span>
-            <a href="CrearCue.php">Regístrate</a>
+            <a href="INDEXS/RegisUsuario/LogindeRegistro.php">Regístrate</a>
         </div>
     </form>
 </body>
 </html>
+
+
+
+
+

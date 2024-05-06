@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 80%;
+    margin: 50px auto;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.profile-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-picture img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+.user-details {
+    flex-grow: 1;
+    padding: 0 20px;
+}
+
+.qr-code img {
+    width: 150px;
+}
