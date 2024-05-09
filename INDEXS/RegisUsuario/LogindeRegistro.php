@@ -24,11 +24,9 @@
             <label for="floatingPassword">Contraseña</label>
         </div>
         <div>
-            <a href="INDEXS/CambContra/CambioContra.html">Olvidé mi Clave</a>
-            <a href="INDEXS/CambContra/CambioContra.html">Cambiar mi Clave</a>
             <button type="submit">REGISTRO</button>
-            <span>¿No tienes una cuenta?</span>
-            <a href="INDEXS/RegisUsuario/LogindeRegistro.php">Regístrate</a>
+            <span>¿Tienes una cuenta?</span>
+            <a href="INDEXS/RegisUsuario/LogindeRegistro.php">Inicio de Sesión</a>
         </div>
     </form>
 </body>
