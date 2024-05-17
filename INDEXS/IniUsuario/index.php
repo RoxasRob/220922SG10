@@ -1,37 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="Styte.css">
-    <title>Inicio de Sesión</title>
-</head>
-<body>
-    <div class="logo-container">
-        <img src="ASSETS./sigma.png" alt="Logo" class="logo">
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>SIGMA</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Mulish&display=swap"
+            rel="stylesheet"
+        >
+        <link rel="stylesheet" href="Styteweb.css">
+        <link rel="stylesheet" href="Stylecel.css" id="style-sheet">
+    </head>
+    <body>
+    
+    <div class="resolucion">
+        <div class="desktop">
+       
+        </div>
+        <div class="tablet">
+            
+        </div>
+        <div class="movil">
+            
+        </div>
     </div>
-    <form action="IniSesion.php" method="POST" class="my-form__wrapper">
-        <h1>BIENVENIDOS</h1>
-        <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Usuario</label>
+
+        <div class="background"></div>
+
+          
+        <!-- <div class="logo-container">
+            <img src="assets/sigma.png" alt="Logo" class="logo" >   
+                               
+        </div> -->
+        
+        <div class="centering">
+
+            <form class="my-form" method="post" action="InicioSesion.php">
+                
+                <div class="login-welcome-row">
+                                        
+                    <h1>BIENVENIDOS</h1>
+                </div>
+                <div class="text-field">
+                    <label for="email">Correo electrónico:</label>
+                    <input
+                        aria-label="Email"
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Tu correo electrónico"
+                        required
+                    >
+                    <img
+                        alt="Email Icon"
+                        title="Email Icon"
+                        src="correo.png"
+                    > 
+                </div>
+                <div class="text-field">
+                    <label for="password">Contraseña:</label>
+                    <input
+                        id="password"
+                        type="password"
+                        aria-label="Password"
+                        name="password"
+                        placeholder="Tu contraseña"
+                        title="Mínimo 6 caracteres"
+                        pattern="{6,}$"
+                        required
+                    >
+                    <img
+                        alt="Password Icon"
+                        title="Password Icon"
+                        src="bloquear.png"
+                    >
+                </div>
+                <div class="my-form__row">
+                    <span>¿Olvidaste tu contraseña?</span>
+                    <a href=".CambContra/CambioContra.html " title="Reset Password">Restablecer la contraseña</a>
+                </div>
+            
+                <input type="submit" class="my-form__button" value="Iniciar Sesion" >
+                <div class="my-form__actions">
+                
+                 <div class="my-form__signup">
+                <span>¿No tienes una cuenta?</span>
+                 <a href="#" title="Registrate">Registrate</a>
+                 </div>
+                    
+                </div>
+            </form>
         </div>
-        <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Contraseña</label>
-        </div>
-        <div>
-            <a href="INDEXS/CambContra/CambioContra.html">Olvidé mi Clave</a>
-            <a href="INDEXS/CambContra/CambioContra.html">Cambiar mi Clave</a>
-            <button type="submit">INICIO SESIÓN</button>
-            <span>¿No tienes una cuenta?</span>
-            <a href="INDEXS/RegisUsuario/LogindeRegistro.php">Regístrate</a>
-        </div>
-    </form>
-</body>
+        <script src="script.js"></script>
+        <script src="scriptcel.js"></script>
+
+    </body>
 </html>
 
 

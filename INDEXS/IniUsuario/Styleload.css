@@ -1,0 +1,29 @@
+body {
+    background-color: black;
+  }
+  
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .logo {
+    max-width: 100%;
+    height: auto;
+  }
+
+ 
+  .rotate {
+    animation: rotate 4s ;
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
