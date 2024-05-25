@@ -44,20 +44,17 @@
             </div>
             <div class="text-field">
                 <label for="email">Correo electrónico:</label>
-                <input aria-label="Email" type="email" id="email" name="email" placeholder="Tu correo electrónico"
-                    required>
+                <input aria-label="Email" type="email" id="email" name="email" placeholder="Tu correo electrónico" required>
                 <img alt="Email Icon" title="Email Icon" src="../assets/images/correo.png">
             </div>
             <div class="text-field">
                 <label for="password">Contraseña:</label>
-                <input id="password" type="password" aria-label="Password" name="password" placeholder="Tu contraseña"
-                    title="Mínimo 6 caracteres al menos 1 Alfabeto y 1 Número"
-                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$" required>
+                <input id="password" type="password" aria-label="Password" name="password" placeholder="Tu contraseña" title="Mínimo 6 caracteres al menos 1 Alfabeto y 1 Número" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$" required>
                 <img alt="Password Icon" title="Password Icon" src="../assets/images/bloquear.png">
             </div>
             <div class="my-form__row">
                 <span>¿Olvidaste tu contraseña?</span>
-                <a href="../components/CambiarContra/CambioContra.html" title="Reset Password">Restablecer la
+                <a href="../components/IngresarCorreo/Correo.html" title="Reset Password">Restablecer la
                     contraseña</a>
             </div>
 

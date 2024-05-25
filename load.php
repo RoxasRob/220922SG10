@@ -31,13 +31,11 @@
         <img src="./assets/images/load.png" alt="Logo" class="logo rotate" id="logo">
 
         <script>
-
             const logo = document.getElementById('logo');
             logo.addEventListener('animationend', () => {
 
                 window.location.href = './views/index_Inicio_Sec.php';
             });
-
         </script>
 
     </div>

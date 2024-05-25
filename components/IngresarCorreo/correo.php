@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Check if the email exists in the database
-    $pdo = new PDO('mysql:host=localhost;dbname=appSigma', 'root', 'root');
+    $pdo = new PDO('mysql:host=localhost;dbname=appSigma', 'root', '');
     $stmt = $pdo->prepare('SELECT * FROM users WHERE email = :email');
     $stmt->bindParam(':email', $email);
     $stmt->execute();

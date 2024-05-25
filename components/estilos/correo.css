@@ -17,6 +17,9 @@ body{
     justify-content: center;
     align-items: center;
 }
+.hidden {
+    display: none;
+}
 .body{
     background-image: url('../Imagenes/Fondo.png');
     background-size: cover;

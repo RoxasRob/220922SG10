@@ -2,7 +2,7 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "root";
+$password = "";
 $dbname = "appSigma";
 
 // Establecer la conexión a la base de datos
@@ -46,7 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param("ssi", $nuevaContrasena, $contrasenaActual, $id);
                 if ($stmt->execute() === TRUE) {
-                    echo "Contraseña actualizada correctamente.";
+                   echo "Contraseña actualizada correctamente";
+                    
                 } else {
                     echo "Error al actualizar la contraseña: " . $conn->error;
                     exit;
