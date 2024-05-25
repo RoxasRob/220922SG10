@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambiar Contraseña</title>
+    <link rel="stylesheet" href="../estilos/correo.css">
+</head>
+<body class="body">
+   
+      
+           <div class="login-side">
+                <div class="my-form__wrapper">
+                    <div class="login-welcome-row">
+                        <h1>¿Quieres cambiar la Contraseña? </h1>
+                        <p>Por favor ingrese su correo electronico. Se enviara un codigo de verificación para el cambio de contraseña</p>
+                        
+                    </div>
+                    <form action="correo.php" method="POST" class="my-form">
+                        
+                       
+                        <div class="text-field">
+                            <label for="correo">Correo:</label>
+                            <input type="email" id="email" name="email"
+                                placeholder="Ejmp: Juares16@gmail.com"
+                                required
+                            >
+                            <img src="../Imagenes/correo.png" alt="">
+                        </div>
+                        <input type="submit" value="Enviar" class="my-form__button">
+                        
+                        
+                        <div class="my-form__actions">
+                            <div class="my-form__row">
+                                <span>¿No tienes una cuenta en Sigma? </span>
+                                <a href="#" title="Reset Password">
+                                    Registrate
+                                </a>
+                            </div>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        
+           
+      
+        
+        
+</body>
+</html>

@@ -1,0 +1,191 @@
+:root{
+    --negro: #000000; 
+    --blanco:  #ffffff; 
+    --morado: #a7a2cb; 
+    --moradoOscuro: #A57EF4; 
+    --azul: #004AAD; 
+    --AzulClaro: #006DFF; 
+
+}
+body{
+    font-size: 1rem; 
+    height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.body{
+    background-image: url('../Imagenes/Fondo.png');
+    background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.my-form__wrapper { /*contenedor */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    gap: 2rem;
+    max-width: 28.75rem;
+    padding: 20px;
+    width: 100%;
+    padding: 3rem 2rem;
+    background:var(--blanco);
+    height: fit-content;
+    box-shadow: 
+        rgba(100, 100, 111, 0.2)
+        0rem 6px 26px 0rem;
+}
+.my-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    position: relative;
+    gap: 1rem;
+}
+.login-welcome { /*no hay etiqueta? */
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.login-welcome-row h1{
+    text-align: center;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 16px;
+}
+.login-welcome-row p{
+    margin: 10px 15px 7px 15px;
+}
+.login-welcome-row {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+   
+    gap: 0.01rem;
+}
+.login-side{
+  
+    display: flex;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    height: 100%;
+
+    
+  }
+.my-form__button {
+    background-color: var(--moradoOscuro);
+    color: white;
+    white-space: nowrap;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    line-height: 3.125rem;
+    outline: none;
+    font-size: 1.125rem;
+    letter-spacing: .025em;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 800;
+    min-height: 3.125rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,.15);
+    transition: all .3s ease;
+    -webkit-transition: all .3s ease;
+}
+.my-form__button:hover{
+    background-color: var(--morado) ;
+}
+.my-form__actions {
+    display: flex;
+    flex-direction: column;
+    color: #000000;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+.my-form__actions a {
+    color: var(--AzulClaro);
+    font-weight: 600;
+    text-decoration: none;
+    margin: 0px 15px 15px 8px;
+}
+.my-form__actions a:hover {
+    text-decoration: underline;
+}
+
+.my-form__row { /*reset pegado al lado derecho*/
+    display: flex;
+    justify-content: space-between;
+}
+.my-form__signup {/*create acount centrado*/
+    display: flex;
+    justify-content: center;
+}
+.my-form__signup a { /*tecto en negrita y más grande*/
+    color: var(--AzulClaro);
+    font-weight: 800;
+    text-decoration: none;
+    font-size: 1.125rem;
+}
+.my-form__signup a:hover { /*paso del mouse*/
+    text-decoration: underline;
+}
+.text-field input {
+    color: var(--moradoOscuro);
+    font-size: 1rem;
+    font-weight: 500;
+    max-width: 100%;
+    width: 100%;
+    border: 1px solid #000000;
+    height: 3.125rem;
+    letter-spacing: .03rem;
+    background-color: transparent;
+    outline: none;
+    transition: .25s;
+    border-radius: 0.5rem;
+    text-indent: 1.25rem;
+    margin-top: 0.5rem;
+}
+.text-field {
+    position: relative;
+}
+.text-field img { /*ajusta la imagen del correo*/
+    position: absolute;
+    right: -0.125rem;
+    bottom: -0.25rem;
+    width: 1.875rem;
+    height: 1.875rem;
+    transform: translate(-50%,-50%);
+    transform-origin: center;
+}
+.text-field input:focus {
+    border: 0.0625rem solid var(--moradoOscuro);
+}
+
+.text-field label {
+    color: var(--negro); /*color*/
+    font-size: 0.975rem;/*tamaño*/
+    font-weight: 600;/*grosor*/
+    letter-spacing: .03rem; /*espacio del texto*/
+    z-index: 10;
+}
+@media (max-width: 640px) {
+    .login-wrapper {
+        grid-template-columns: 1fr;
+        height: 100vh;
+    }
+    
+    .info-side {
+        flex-direction: column-reverse;
+        padding: 3rem 3rem 3rem 2rem;
+    }
+}
+
