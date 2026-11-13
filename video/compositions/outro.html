@@ -1,0 +1,164 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #04070d;
+      font-family: "Outfit", sans-serif;
+      color: #e8f3ff;
+    }
+    #out-ground {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 38% at 50% 44%, rgba(47, 123, 255, 0.13), transparent 72%),
+        linear-gradient(180deg, #050912 0%, #04070d 100%);
+    }
+    #out-glow {
+      position: absolute;
+      left: 960px;
+      top: 470px;
+      width: 1400px;
+      height: 520px;
+      margin: -260px 0 0 -700px;
+      background: radial-gradient(ellipse at center, rgba(25, 230, 255, 0.18), transparent 65%);
+    }
+    #out-smear {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+      background: linear-gradient(90deg, transparent 0%, rgba(47, 123, 255, 0.5) 25%, rgba(25, 230, 255, 0.7) 50%, rgba(47, 123, 255, 0.5) 75%, transparent 100%);
+    }
+    #out-content {
+      position: absolute;
+      inset: 0;
+    }
+    #out-tag {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 250px;
+      text-align: center;
+      font-size: 112px;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.08;
+    }
+    #out-tag .w {
+      display: inline-block;
+      margin: 0 0.12em;
+    }
+    #out-hl {
+      background: linear-gradient(100deg, #19e6ff 0%, #19e6ff 38%, #f4feff 50%, #19e6ff 62%, #19e6ff 100%);
+      background-size: 300% 100%;
+      background-position: 100% 0;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    #out-rule {
+      position: absolute;
+      left: 760px;
+      top: 620px;
+      width: 400px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #2f7bff 20%, #19e6ff 50%, #2f7bff 80%, transparent);
+      transform-origin: 50% 50%;
+    }
+    #out-sig {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 660px;
+      text-align: center;
+      font-size: 44px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: #e8f3ff;
+    }
+    #out-contacts {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 760px;
+      display: flex;
+      justify-content: center;
+      gap: 64px;
+      font-size: 30px;
+      color: #9fb6d6;
+    }
+    .ct {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .ct svg {
+      width: 36px;
+      height: 36px;
+    }
+    #out-black {
+      position: absolute;
+      inset: 0;
+      background: #000;
+    }
+  </style>
+  <div id="root" data-composition-id="outro" data-width="1920" data-height="1080">
+    <div id="out-ground" data-layout-ignore></div>
+    <div id="out-glow" data-layout-ignore></div>
+
+    <div id="out-content">
+      <div id="out-tag">
+        <span class="w">Transformando</span><span class="w">datos</span><br /><span class="w">en</span><span class="w" id="out-hl">decisiones.</span>
+      </div>
+      <div id="out-rule"></div>
+      <div id="out-sig" data-var-text="signature">Robert De la Cruz — Analista de Datos</div>
+      <div id="out-contacts">
+        <div class="ct" id="out-li">
+          <svg viewBox="0 0 24 24" fill="#2f7bff" aria-label="LinkedIn">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+          </svg>
+          <span data-var-text="linkedin">LinkedIn</span>
+        </div>
+        <div class="ct" id="out-em">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#19e6ff" stroke-width="1.8" stroke-linejoin="round" aria-label="Email">
+            <rect x="2.5" y="4.5" width="19" height="15" rx="2.5" />
+            <path d="M3.5 6.5 L12 13 L20.5 6.5" />
+          </svg>
+          <span data-var-text="email">Email</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="out-smear" data-layout-ignore></div>
+    <div id="out-black" data-layout-ignore></div>
+  </div>
+  <script>
+    (function () {
+      const b = (n) => 0.5593 * (n - 30); // scene starts on n = 30
+      const tl = gsap.timeline({ paused: true });
+
+      // whip pan arrival: a light smear crosses right → left, the clean ground lands under it
+      tl.fromTo("#out-smear", { x: 200, opacity: 1, filter: "blur(30px)" }, { x: -2100, duration: 0.3, ease: "power2.out" }, 0);
+      tl.fromTo("#out-ground", { x: 260, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 0);
+
+      // tagline, per word blur-in (lands n31)
+      tl.fromTo("#out-tag .w", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.08, ease: "power2.out" }, b(31) - 0.3);
+      // n32: subtle flash across "decisiones."
+      tl.fromTo("#out-hl", { backgroundPosition: "100% 0" }, { backgroundPosition: "0% 0", duration: 0.7, ease: "power2.inOut" }, b(32));
+      tl.fromTo("#out-glow", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, b(32));
+
+      // n34: signature
+      tl.fromTo("#out-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "expo.out" }, b(34) - 0.1);
+      tl.fromTo("#out-sig", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, b(34));
+      tl.fromTo(["#out-li", "#out-em"], { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, stagger: 0.1, ease: "power2.out" }, b(35));
+
+      // clean fade to black, fully black just before 30.0 s
+      tl.fromTo("#out-black", { opacity: 0 }, { opacity: 1, duration: 1.25, ease: "power1.inOut" }, 6.22 - 1.3);
+
+      window.__timelines["outro"] = tl;
+    })();
+  </script>
+</template>

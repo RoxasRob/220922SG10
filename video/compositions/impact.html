@@ -1,0 +1,432 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #04070d;
+      font-family: "Outfit", sans-serif;
+      color: #e8f3ff;
+    }
+    .im-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(47, 123, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(47, 123, 255, 0.06) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .im-vig {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 55%, rgba(47, 123, 255, 0.16), transparent 70%),
+        radial-gradient(ellipse 90% 90% at 50% 50%, transparent 50%, rgba(0, 0, 0, 0.8) 100%);
+    }
+    #im-persp {
+      position: absolute;
+      inset: 0;
+      perspective: 2000px;
+      perspective-origin: 50% 45%;
+    }
+    #im-cam {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+    }
+    #im-dash {
+      position: absolute;
+      left: 140px;
+      top: 90px;
+      width: 1640px;
+      height: 900px;
+      transform-style: preserve-3d;
+    }
+    .card {
+      position: absolute;
+      background: rgba(14, 26, 48, 0.78);
+      border: 1px solid rgba(120, 190, 255, 0.22);
+      border-radius: 18px;
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      padding: 22px 28px;
+    }
+    .card h4 {
+      font-size: 28px;
+      font-weight: 600;
+      color: #9fb6d6;
+      letter-spacing: 0.01em;
+    }
+    #im-head {
+      left: 0;
+      top: 0;
+      width: 1640px;
+      height: 72px;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    #im-head .ttl {
+      font-size: 32px;
+      font-weight: 700;
+    }
+    #im-head .ttl b {
+      color: #19e6ff;
+      font-weight: 700;
+    }
+    #im-head .chips {
+      display: flex;
+      gap: 16px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 26px;
+      color: #9fb6d6;
+    }
+    #im-head .chip {
+      padding: 6px 16px;
+      border: 1px solid rgba(120, 190, 255, 0.28);
+      border-radius: 8px;
+    }
+    #im-head .live {
+      color: #19e6ff;
+      border-color: rgba(25, 230, 255, 0.5);
+    }
+    .kpi {
+      top: 96px;
+      width: 392px;
+      height: 170px;
+    }
+    .kpi .v {
+      margin-top: 8px;
+      font-size: 72px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+    .kpi .d {
+      position: absolute;
+      right: 26px;
+      bottom: 28px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 26px;
+      color: #19e6ff;
+    }
+    .kpi.hl .v {
+      color: #19e6ff;
+      text-shadow: 0 0 24px rgba(25, 230, 255, 0.5);
+    }
+    #im-bars {
+      left: 0;
+      top: 290px;
+      width: 1000px;
+      height: 610px;
+    }
+    #im-plot {
+      position: absolute;
+      left: 40px;
+      right: 40px;
+      top: 110px;
+      height: 400px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      background-image: linear-gradient(rgba(120, 190, 255, 0.1) 1px, transparent 1px);
+      background-size: 100% 100px;
+      border-bottom: 1px solid rgba(120, 190, 255, 0.3);
+    }
+    .bar {
+      position: relative;
+      width: 78px;
+      border-radius: 8px 8px 2px 2px;
+      background: linear-gradient(to top, rgba(47, 123, 255, 0.55), #2f7bff);
+      transform-origin: 50% 100%;
+    }
+    .bar.top {
+      background: linear-gradient(to top, rgba(25, 230, 255, 0.45), #19e6ff);
+      box-shadow: 0 0 30px rgba(25, 230, 255, 0.4);
+    }
+    .bar .bv {
+      position: absolute;
+      left: 50%;
+      top: -42px;
+      width: 120px;
+      margin-left: -60px;
+      text-align: center;
+      font-size: 26px;
+      font-weight: 700;
+      color: #e8f3ff;
+    }
+    #im-months {
+      position: absolute;
+      left: 40px;
+      right: 40px;
+      top: 524px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 26px;
+      color: #7c93b5;
+    }
+    #im-months span {
+      width: 78px;
+      text-align: center;
+    }
+    #im-tip {
+      position: absolute;
+      left: 660px;
+      top: 26px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      background: rgba(25, 230, 255, 0.12);
+      border: 1px solid #19e6ff;
+      font-size: 28px;
+      font-weight: 700;
+      color: #e8f3ff;
+      white-space: nowrap;
+    }
+    #im-tip b {
+      color: #19e6ff;
+    }
+    #im-line {
+      left: 1024px;
+      top: 290px;
+      width: 616px;
+      height: 293px;
+    }
+    #im-line svg {
+      position: absolute;
+      left: 28px;
+      top: 84px;
+    }
+    #im-line .big {
+      position: absolute;
+      right: 28px;
+      top: 18px;
+      font-size: 44px;
+      font-weight: 800;
+      color: #19e6ff;
+    }
+    #im-donut {
+      left: 1024px;
+      top: 607px;
+      width: 616px;
+      height: 293px;
+    }
+    #im-donut svg {
+      position: absolute;
+      left: 34px;
+      top: 76px;
+    }
+    #im-donut .pct {
+      position: absolute;
+      left: 34px;
+      top: 76px;
+      width: 190px;
+      height: 190px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 46px;
+      font-weight: 800;
+    }
+    #im-donut .leg {
+      position: absolute;
+      left: 270px;
+      top: 96px;
+      font-size: 26px;
+      line-height: 1.75;
+      color: #9fb6d6;
+    }
+    #im-donut .leg i {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      margin-right: 12px;
+    }
+    .shard {
+      position: absolute;
+      left: 960px;
+      top: 540px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 34px;
+      font-weight: 700;
+      color: #19e6ff;
+    }
+    #im-flash {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, #f4feff 0%, #19e6ff 45%, #0a3a80 100%);
+    }
+  </style>
+  <div id="root" data-composition-id="impact" data-width="1920" data-height="1080">
+    <div class="im-bg" data-layout-ignore></div>
+    <div class="im-vig" data-layout-ignore></div>
+
+    <div id="im-persp" data-layout-allow-overflow>
+      <div id="im-cam">
+        <div id="im-dash">
+          <div class="card" id="im-head">
+            <div class="ttl">Panel Operativo · <b>Análisis 2026</b></div>
+            <div class="chips">
+              <span class="chip">Región: Todas</span><span class="chip">Periodo: YTD</span><span class="chip live">● En vivo</span>
+            </div>
+          </div>
+
+          <div class="card kpi" id="im-k1" style="left: 0px">
+            <h4>Registros procesados</h4><div class="v" id="im-v1">0</div><div class="d">▲ 18%</div>
+          </div>
+          <div class="card kpi hl" id="im-k2" style="left: 416px">
+            <h4>Calidad de datos</h4><div class="v" id="im-v2">0</div><div class="d">▲ 6.4 pts</div>
+          </div>
+          <div class="card kpi" id="im-k3" style="left: 832px">
+            <h4>Tiempo de reporte</h4><div class="v" id="im-v3">0</div><div class="d">▼ horas</div>
+          </div>
+          <div class="card kpi" id="im-k4" style="left: 1248px">
+            <h4>Eficiencia operativa</h4><div class="v" id="im-v4">0</div><div class="d">▲ YoY</div>
+          </div>
+
+          <div class="card" id="im-bars">
+            <h4>Ventas mensuales (M USD)</h4>
+            <div id="im-tip">Ago · <b>$4.8M</b> · +17%</div>
+            <div id="im-plot">
+              <div class="bar" style="height: 168px"><span class="bv">2.1</span></div>
+              <div class="bar" style="height: 208px"><span class="bv">2.6</span></div>
+              <div class="bar" style="height: 192px"><span class="bv">2.4</span></div>
+              <div class="bar" style="height: 256px"><span class="bv">3.2</span></div>
+              <div class="bar" style="height: 288px"><span class="bv">3.6</span></div>
+              <div class="bar" style="height: 312px"><span class="bv">3.9</span></div>
+              <div class="bar" style="height: 328px"><span class="bv">4.1</span></div>
+              <div class="bar top" id="im-bar-top" style="height: 384px"><span class="bv">4.8</span></div>
+            </div>
+            <div id="im-months">
+              <span>Ene</span><span>Feb</span><span>Mar</span><span>Abr</span><span>May</span><span>Jun</span><span>Jul</span><span>Ago</span>
+            </div>
+          </div>
+
+          <div class="card" id="im-line">
+            <h4>Tiempo de procesamiento</h4>
+            <div class="big" id="im-line-big">−72%</div>
+            <svg width="560" height="180" viewBox="0 0 560 180" data-layout-ignore>
+              <defs>
+                <linearGradient id="im-area-g" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#19e6ff" stop-opacity="0.35" />
+                  <stop offset="1" stop-color="#19e6ff" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+              <g stroke="rgba(120,190,255,0.12)" stroke-width="1">
+                <line x1="0" y1="45" x2="560" y2="45" /><line x1="0" y1="90" x2="560" y2="90" /><line x1="0" y1="135" x2="560" y2="135" />
+              </g>
+              <path id="im-area" d="M0 22 L80 30 L160 26 L240 62 L320 84 L400 118 L480 132 L560 150 L560 180 L0 180 Z" fill="url(#im-area-g)" />
+              <path id="im-path" d="M0 22 L80 30 L160 26 L240 62 L320 84 L400 118 L480 132 L560 150" fill="none" stroke="#19e6ff" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" style="filter: drop-shadow(0 0 8px rgba(25, 230, 255, 0.8))" />
+              <circle id="im-dot" cx="560" cy="150" r="9" fill="#f4feff" />
+            </svg>
+          </div>
+
+          <div class="card" id="im-donut">
+            <h4>Integridad del modelo</h4>
+            <svg width="190" height="190" viewBox="0 0 190 190" data-layout-ignore>
+              <circle cx="95" cy="95" r="78" fill="none" stroke="rgba(120,190,255,0.14)" stroke-width="20" />
+              <circle id="im-ring" cx="95" cy="95" r="78" fill="none" stroke="#2f7bff" stroke-width="20" stroke-linecap="round" transform="rotate(-90 95 95)" />
+            </svg>
+            <div class="pct" id="im-pct">0%</div>
+            <div class="leg">
+              <div><i style="background: #2f7bff"></i>Registros válidos</div>
+              <div><i style="background: rgba(120, 190, 255, 0.3)"></i>En revisión</div>
+              <div><i style="background: #19e6ff"></i>Auditado ✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="im-shards" data-layout-ignore></div>
+    <div id="im-flash" data-layout-ignore></div>
+  </div>
+  <script>
+    (function () {
+      const b = (n) => 0.5593 * (n - 14); // scene starts on the drop (n = 14)
+      const tl = gsap.timeline({ paused: true });
+
+      // ---------- DROP: explosion
+      tl.fromTo("#im-flash", { opacity: 1 }, { opacity: 0, duration: 0.4, ease: "power2.out" }, 0);
+      let seed = 4242;
+      const rnd = () => ((seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296);
+      const host = document.getElementById("im-shards");
+      const glyphs = ["0", "1", "%", "Σ", "7", "3", "9", "$", "4", "8"];
+      for (let i = 0; i < 70; i++) {
+        const el = document.createElement("div");
+        el.className = "shard";
+        el.textContent = glyphs[Math.floor(rnd() * glyphs.length)];
+        host.appendChild(el);
+        const a = rnd() * Math.PI * 2;
+        const r = 500 + rnd() * 900;
+        tl.fromTo(el,
+          { x: 0, y: 0, scale: 0.4, opacity: 1, rotation: 0 },
+          { x: Math.cos(a) * r, y: Math.sin(a) * r * 0.7, scale: 1 + rnd() * 2.5, rotation: (rnd() - 0.5) * 240, opacity: 0, duration: 0.7 + rnd() * 0.4, ease: "expo.out" }, 0);
+      }
+
+      // dashboard assembles out of the blast, from depth
+      const parts = ["#im-head", "#im-k1", "#im-k2", "#im-k3", "#im-k4", "#im-bars", "#im-line", "#im-donut"];
+      parts.forEach((s, i) => {
+        tl.fromTo(s,
+          { z: -1400, opacity: 0, rotationX: 20, filter: "blur(12px)" },
+          { z: 0, opacity: 1, rotationX: 0, filter: "blur(0px)", duration: 0.75, ease: "expo.out" }, 0.08 + i * 0.06);
+      });
+
+      // ---------- camera: continuous orbit + beat-locked framings
+      tl.fromTo("#im-cam", { rotationY: -22, rotationX: 10, x: 0, y: 0, z: -500 }, { rotationY: -12, rotationX: 6, z: -140, duration: 1.4, ease: "expo.out" }, 0);
+      tl.to("#im-cam", { rotationY: -4, rotationX: 4, z: -80, duration: b(22) - 1.4, ease: "power1.inOut" }, 1.4);
+      // n22: close-up on the line chart + KPI, depth of field
+      tl.to("#im-cam", { x: -420, y: 120, z: 520, rotationY: -14, rotationX: 2, duration: 0.6, ease: "power2.inOut" }, b(22) - 0.15);
+      tl.to("#im-cam", { rotationY: -8, duration: b(26) - b(22) - 0.6, ease: "none" }, b(22) + 0.45);
+      tl.to(["#im-bars", "#im-k1", "#im-k3", "#im-k4", "#im-head"], { filter: "blur(7px)", opacity: 0.55, duration: 0.5, ease: "power2.inOut" }, b(22) - 0.1);
+      // n26: orbit across to the bar chart from the other side
+      tl.to("#im-cam", { x: 330, y: -10, z: 420, rotationY: 16, rotationX: 4, duration: 0.6, ease: "power2.inOut" }, b(26) - 0.15);
+      tl.to(["#im-bars", "#im-k1", "#im-head"], { filter: "blur(0px)", opacity: 1, duration: 0.45, ease: "power2.inOut" }, b(26) - 0.1);
+      tl.to(["#im-line", "#im-donut", "#im-k2", "#im-k4"], { filter: "blur(7px)", opacity: 0.55, duration: 0.45, ease: "power2.inOut" }, b(26) - 0.1);
+      // n28: pull back wide, everything sharp
+      tl.to("#im-cam", { x: 0, y: 0, z: -260, rotationY: 10, rotationX: 6, duration: 0.6, ease: "power2.inOut" }, b(28) - 0.15);
+      tl.to(["#im-line", "#im-donut", "#im-k2", "#im-k3", "#im-k4"], { filter: "blur(0px)", opacity: 1, duration: 0.45, ease: "power2.inOut" }, b(28) - 0.1);
+      // whip pan out (left)
+      tl.to("#im-cam", { x: -2600, rotationY: 30, duration: 0.32, ease: "power2.in" }, 8.95 - 0.33);
+      tl.fromTo("#im-persp", { filter: "blur(0px)" }, { filter: "blur(18px)", duration: 0.32, ease: "power2.in" }, 8.95 - 0.33);
+
+      // ---------- data performs
+      // KPI roll-ups
+      const kv = { a: 0, b: 0, c: 0, d: 0 };
+      tl.fromTo(kv, { a: 0, b: 0, c: 0, d: 0 }, {
+        a: 2.4, b: 99.2, c: 72, d: 34, duration: 1.6, ease: "power3.out",
+        onUpdate: () => {
+          document.getElementById("im-v1").textContent = kv.a.toFixed(1) + "M";
+          document.getElementById("im-v2").textContent = kv.b.toFixed(1) + "%";
+          document.getElementById("im-v3").textContent = "−" + Math.round(kv.c) + "%";
+          document.getElementById("im-v4").textContent = "+" + Math.round(kv.d) + "%";
+        },
+      }, 0.55);
+      // n16: bars grow
+      tl.fromTo("#im-plot .bar", { scaleY: 0 }, { scaleY: 1, duration: 0.6, stagger: 0.05, ease: "expo.out" }, b(16));
+      tl.fromTo("#im-plot .bv", { opacity: 0 }, { opacity: 1, duration: 0.15, stagger: 0.05, ease: "power1.out" }, b(16) + 0.3);
+      // n18: glowing line draws
+      const P = document.getElementById("im-path");
+      const L = P.getTotalLength();
+      tl.fromTo(P, { strokeDasharray: L, strokeDashoffset: L }, { strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" }, b(18));
+      tl.fromTo("#im-area", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, b(18) + 0.5);
+      tl.fromTo("#im-dot", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.3, ease: "back.out(2)" }, b(18) + 0.88);
+      tl.fromTo("#im-line-big", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power2.out" }, b(18) + 0.9);
+      // n20: donut fills
+      const C = 2 * Math.PI * 78;
+      const dv = { p: 0 };
+      tl.fromTo("#im-ring", { strokeDasharray: `0 ${C}` }, { strokeDasharray: `${C * 0.98} ${C}`, duration: 0.9, ease: "power3.out" }, b(20));
+      tl.fromTo(dv, { p: 0 }, {
+        p: 98, duration: 0.9, ease: "power3.out",
+        onUpdate: () => (document.getElementById("im-pct").textContent = Math.round(dv.p) + "%"),
+      }, b(20));
+      // n26: top bar highlight + tooltip
+      tl.fromTo("#im-tip", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.3, ease: "expo.out" }, b(26) + 0.2);
+
+      window.__timelines["impact"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,431 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #04070d;
+      font-family: "Outfit", sans-serif;
+      color: #e8f3ff;
+    }
+    .en-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(47, 123, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(47, 123, 255, 0.06) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .en-vig {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 45% at 50% 50%, rgba(47, 123, 255, 0.14), transparent 70%),
+        radial-gradient(ellipse 90% 90% at 50% 50%, transparent 50%, rgba(0, 0, 0, 0.8) 100%);
+    }
+    .shot {
+      position: absolute;
+      inset: 0;
+    }
+    .persp {
+      position: absolute;
+      inset: 0;
+      perspective: 1700px;
+      perspective-origin: 50% 50%;
+    }
+    .cam {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+    }
+    /* glass editor */
+    .ed {
+      position: absolute;
+      width: 1280px;
+      background: rgba(14, 26, 48, 0.78);
+      border: 1px solid rgba(120, 190, 255, 0.24);
+      border-radius: 18px;
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+    }
+    .ed-head {
+      height: 58px;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 22px;
+      background: rgba(8, 16, 32, 0.7);
+      border-bottom: 1px solid rgba(120, 190, 255, 0.14);
+    }
+    .ed-tab {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 26px;
+      color: #e8f3ff;
+      padding: 12px 22px;
+      border-top: 2px solid #19e6ff;
+      background: rgba(14, 26, 48, 0.9);
+      border-radius: 6px 6px 0 0;
+    }
+    .ed-tab .ext {
+      color: #19e6ff;
+    }
+    .ed-body {
+      padding: 26px 34px 30px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 29px;
+      line-height: 1.58;
+      color: #cfe2ff;
+    }
+    .ed-body .l {
+      white-space: pre;
+    }
+    .ed-body .g {
+      display: inline-block;
+      width: 46px;
+      color: #3d5478;
+    }
+    .k {
+      color: #5b9bff;
+    }
+    .s {
+      color: #19e6ff;
+    }
+    .f {
+      color: #a9d4ff;
+    }
+    .c {
+      color: #4e6787;
+    }
+    .n {
+      color: #8fb8ff;
+    }
+    .en-flash {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, #f4feff 0%, #19e6ff 45%, #0a3a80 100%);
+    }
+    /* pipeline */
+    .node {
+      position: absolute;
+      padding: 18px 30px;
+      border-radius: 14px;
+      background: rgba(14, 26, 48, 0.85);
+      border: 1px solid rgba(120, 190, 255, 0.3);
+      font-size: 30px;
+      font-weight: 600;
+      color: #e8f3ff;
+      white-space: nowrap;
+    }
+    .node small {
+      display: block;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 24px;
+      font-weight: 400;
+      color: #7c93b5;
+      margin-top: 4px;
+    }
+    .node.hot {
+      border-color: #19e6ff;
+      box-shadow: 0 0 30px rgba(25, 230, 255, 0.35);
+    }
+    .node.dw {
+      border-color: #2f7bff;
+      box-shadow: 0 0 34px rgba(47, 123, 255, 0.45);
+    }
+    #en-s3-stats {
+      position: absolute;
+      left: 640px;
+      top: 770px;
+      display: flex;
+      gap: 80px;
+    }
+    .stat .v {
+      font-size: 64px;
+      font-weight: 800;
+      color: #19e6ff;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.01em;
+    }
+    .stat .t {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 26px;
+      color: #7c93b5;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .stat .v.b {
+      color: #e8f3ff;
+    }
+    #en-s3-title {
+      position: absolute;
+      left: 210px;
+      top: 140px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 26px;
+      letter-spacing: 0.16em;
+      color: #7c93b5;
+    }
+    #en-s3-title b {
+      color: #19e6ff;
+      font-weight: 400;
+    }
+    /* converge */
+    #en-core {
+      position: absolute;
+      left: 960px;
+      top: 540px;
+      width: 260px;
+      height: 260px;
+      margin: -130px 0 0 -130px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #f4feff 0%, #19e6ff 30%, rgba(47, 123, 255, 0.5) 55%, transparent 72%);
+    }
+    .stream {
+      position: absolute;
+      left: 960px;
+      top: 540px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 24px;
+      color: #19e6ff;
+      white-space: nowrap;
+      transform-origin: 0 50%;
+    }
+    .mini {
+      position: absolute;
+      width: 560px;
+      background: rgba(14, 26, 48, 0.8);
+      border: 1px solid rgba(120, 190, 255, 0.24);
+      border-radius: 16px;
+      padding: 24px 28px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 24px;
+      line-height: 1.6;
+      color: #cfe2ff;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+    }
+    .mini .l {
+      white-space: pre;
+    }
+  </style>
+  <div id="root" data-composition-id="engine" data-width="1920" data-height="1080">
+    <div class="en-bg" data-layout-ignore></div>
+    <div class="en-vig" data-layout-ignore></div>
+
+    <!-- S1 · Python / Pandas -->
+    <div id="en-s1" class="shot clip" data-start="0" data-duration="1.119" data-layout-allow-overflow>
+      <div class="persp">
+        <div class="cam" id="en-s1-cam">
+          <div class="ed" id="en-py" style="left: 320px; top: 190px">
+            <div class="ed-head"><div class="ed-tab">limpieza_ventas<span class="ext">.py</span></div></div>
+            <div class="ed-body">
+              <div class="l py-l"><span class="g">1</span><span class="k">import</span> pandas <span class="k">as</span> pd</div>
+              <div class="l py-l"><span class="g">2</span>df = pd.<span class="f">read_sql</span>(query, engine)</div>
+              <div class="l py-l"><span class="g">3</span>df = (df.<span class="f">drop_duplicates</span>()</div>
+              <div class="l py-l"><span class="g">4</span>        .<span class="f">dropna</span>(subset=[<span class="s">"id_cliente"</span>])</div>
+              <div class="l py-l"><span class="g">5</span>        .<span class="f">assign</span>(fecha=pd.<span class="f">to_datetime</span>(df.fecha)))</div>
+              <div class="l py-l"><span class="g">6</span>kpi = df.<span class="f">groupby</span>(<span class="s">"region"</span>)[<span class="s">"ventas"</span>]</div>
+              <div class="l py-l"><span class="g">7</span>         .<span class="f">agg</span>([<span class="s">"sum"</span>, <span class="s">"mean"</span>])</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S2 · SQL (match cut, same frame) → pull back to 3 panels -->
+    <div id="en-s2" class="shot clip" data-start="1.119" data-duration="2.237" data-layout-allow-overflow data-layout-allow-overlap>
+      <div class="persp">
+        <div class="cam" id="en-s2-cam">
+          <div class="mini" data-layout-ignore id="en-s2-left" style="left: -260px; top: 300px">
+            <div class="l"><span class="k">import</span> pandas <span class="k">as</span> pd</div>
+            <div class="l">df = df.<span class="f">drop_duplicates</span>()</div>
+            <div class="l">df = df.<span class="f">dropna</span>()</div>
+            <div class="l">kpi = df.<span class="f">groupby</span>(<span class="s">"region"</span>)</div>
+            <div class="l">kpi.<span class="f">to_sql</span>(<span class="s">"kpi_region"</span>)</div>
+          </div>
+          <div class="mini" data-layout-ignore id="en-s2-right" style="left: 1620px; top: 300px">
+            <div class="l"><span class="c"># automatizacion.py</span></div>
+            <div class="l au-l">schedule.<span class="f">every</span>().day</div>
+            <div class="l au-l">  .<span class="f">at</span>(<span class="s">"06:00"</span>).<span class="f">do</span>(etl)</div>
+            <div class="l au-l"><span class="k">def</span> <span class="f">etl</span>():</div>
+            <div class="l au-l">  <span class="f">cargar</span>(<span class="f">limpiar</span>(<span class="f">extraer</span>()))</div>
+          </div>
+          <div class="ed" id="en-sql" style="left: 320px; top: 190px">
+            <div class="ed-head"><div class="ed-tab">kpi_operaciones<span class="ext">.sql</span></div></div>
+            <div class="ed-body">
+              <div class="l sq-l"><span class="g">1</span><span class="k">SELECT</span> region, <span class="f">SUM</span>(ventas) <span class="k">AS</span> total,</div>
+              <div class="l sq-l"><span class="g">2</span>       <span class="f">COUNT</span>(<span class="k">DISTINCT</span> id_cliente) <span class="k">AS</span> clientes</div>
+              <div class="l sq-l"><span class="g">3</span><span class="k">FROM</span> operaciones o</div>
+              <div class="l sq-l"><span class="g">4</span><span class="k">JOIN</span> clientes c <span class="k">ON</span> c.id = o.id_cliente</div>
+              <div class="l sq-l"><span class="g">5</span><span class="k">WHERE</span> fecha &gt;= <span class="s">'2026-01-01'</span></div>
+              <div class="l sq-l"><span class="g">6</span><span class="k">GROUP BY</span> region</div>
+              <div class="l sq-l"><span class="g">7</span><span class="k">ORDER BY</span> total <span class="k">DESC</span>;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S3 · pipeline: sources → limpieza → transformación → warehouse -->
+    <div id="en-s3" class="shot clip" data-start="3.356" data-duration="2.237" data-layout-allow-overlap>
+      <div class="persp">
+        <div class="cam" id="en-s3-cam">
+          <div id="en-s3-title">PIPELINE <b>ETL</b> · LIMPIEZA Y ESTRUCTURACIÓN</div>
+          <svg id="en-s3-svg" width="1920" height="1080" viewBox="0 0 1920 1080" style="position: absolute; left: 0; top: 0" data-layout-ignore>
+            <g fill="none" stroke="rgba(80,160,255,0.55)" stroke-width="3">
+              <path class="wire" d="M420 290 C 600 290, 600 470, 770 470" />
+              <path class="wire" d="M420 410 C 590 410, 600 470, 770 470" />
+              <path class="wire" d="M420 530 C 590 530, 600 470, 770 470" />
+              <path class="wire" d="M420 650 C 600 650, 600 470, 770 470" />
+              <path class="wire" d="M1010 470 L 1190 470" />
+              <path class="wire" d="M1470 470 L 1590 470" />
+            </g>
+            <g fill="none" stroke="#19e6ff" stroke-width="5" stroke-linecap="round">
+              <path class="pulse" d="M420 290 C 600 290, 600 470, 770 470" />
+              <path class="pulse" d="M420 410 C 590 410, 600 470, 770 470" />
+              <path class="pulse" d="M420 530 C 590 530, 600 470, 770 470" />
+              <path class="pulse" d="M420 650 C 600 650, 600 470, 770 470" />
+              <path class="pulse" d="M1010 470 L 1190 470" />
+              <path class="pulse" d="M1470 470 L 1590 470" />
+            </g>
+          </svg>
+          <div class="node src" style="left: 310px; top: 290px">SQL Server</div>
+          <div class="node src" style="left: 310px; top: 410px">CSV / Excel</div>
+          <div class="node src" style="left: 310px; top: 530px">API REST</div>
+          <div class="node src" style="left: 310px; top: 650px">ERP</div>
+          <div class="node hot" id="en-n-clean" style="left: 890px; top: 470px">Limpieza<small>dedupe · nulls</small></div>
+          <div class="node hot" id="en-n-tr" style="left: 1330px; top: 470px">Transformación<small>tipos · joins</small></div>
+          <div class="node dw" id="en-n-dw" style="left: 1690px; top: 470px">Warehouse<small>modelo estrella</small></div>
+          <div id="en-s3-stats">
+            <div class="stat"><div class="v" id="en-rows">0</div><div class="t">filas procesadas</div></div>
+            <div class="stat"><div class="v b" id="en-dups">0</div><div class="t">duplicados eliminados</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S4 · wide 3D: everything converges into the core -->
+    <div id="en-s4" class="shot clip" data-start="5.593" data-duration="2.237" data-layout-allow-overflow data-layout-allow-overlap>
+      <div class="persp">
+        <div class="cam" id="en-s4-cam">
+          <div id="en-streams" data-layout-ignore></div>
+          <div class="mini s4p" data-layout-ignore id="en-s4-a" style="left: 170px; top: 170px">
+            <div class="l"><span class="k">import</span> pandas <span class="k">as</span> pd</div>
+            <div class="l">df.<span class="f">drop_duplicates</span>()</div>
+            <div class="l">df.<span class="f">groupby</span>(<span class="s">"region"</span>)</div>
+          </div>
+          <div class="mini s4p" data-layout-ignore id="en-s4-b" style="left: 1190px; top: 150px">
+            <div class="l"><span class="k">SELECT</span> region, <span class="f">SUM</span>(ventas)</div>
+            <div class="l"><span class="k">FROM</span> operaciones</div>
+            <div class="l"><span class="k">GROUP BY</span> region;</div>
+          </div>
+          <div class="mini s4p" data-layout-ignore id="en-s4-c" style="left: 680px; top: 760px">
+            <div class="l"><span class="c"># warehouse</span></div>
+            <div class="l">filas: <span class="n">1,284,512</span>  <span class="s">OK</span></div>
+          </div>
+          <div id="en-core" data-layout-ignore></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="en-flash" id="en-flash-in" data-layout-ignore></div>
+    <div class="en-flash" id="en-flash-out" style="opacity: 0" data-layout-ignore></div>
+  </div>
+  <script>
+    (function () {
+      const b = (n) => 0.5593 * n; // local beat grid (scene starts on drum entry)
+      const tl = gsap.timeline({ paused: true });
+
+      // flash carried over from the intro push-in
+      tl.fromTo("#en-flash-in", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power2.out" }, 0);
+
+      // ---------- S1  Python (0 → b2)
+      tl.fromTo("#en-s1-cam", { x: 160, z: 380, rotationY: -16 }, { x: -40, z: 260, rotationY: -10, duration: 1.119, ease: "power2.out" }, 0);
+      gsap.utils.toArray("#en-s1 .py-l").forEach((el, i) => {
+        const n = el.textContent.length;
+        tl.fromTo(el, { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.14, ease: `steps(${n})` }, 0.06 + i * 0.13);
+      });
+
+      // ---------- S2  SQL (b2 → b6) — match cut: same panel frame, the camera keeps travelling
+      const s2 = b(2);
+      tl.fromTo("#en-s2-cam", { x: -40, z: 260, rotationY: -10, scale: 1.04 }, { x: -120, rotationY: -6, scale: 1, duration: 1.118, ease: "power2.out" }, s2);
+      gsap.utils.toArray("#en-s2 .sq-l").forEach((el, i) => {
+        const n = el.textContent.length;
+        tl.fromTo(el, { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.13, ease: `steps(${n})` }, s2 + 0.04 + i * 0.12);
+      });
+      // n4: pull back, side panels arrive in depth
+      tl.to("#en-s2-cam", { x: 0, z: -520, rotationY: 8, duration: 0.7, ease: "power3.inOut" }, b(4));
+      tl.fromTo("#en-s2-left", { x: -300, z: -200, rotationY: 28, opacity: 0 }, { x: 0, z: -200, rotationY: 28, opacity: 1, duration: 0.55, ease: "expo.out" }, b(4) + 0.15);
+      tl.fromTo("#en-s2-right", { x: 300, z: -200, rotationY: -28, opacity: 0 }, { x: 0, z: -200, rotationY: -28, opacity: 1, duration: 0.55, ease: "expo.out" }, b(4) + 0.22);
+      gsap.utils.toArray("#en-s2 .au-l").forEach((el, i) => {
+        const n = el.textContent.length;
+        tl.fromTo(el, { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.12, ease: `steps(${n})` }, b(4) + 0.5 + i * 0.1);
+      });
+      tl.to("#en-s2-cam", { x: -60, rotationY: -4, duration: 0.4, ease: "power3.in" }, b(6) - 0.4);
+
+      // ---------- S3  pipeline (b6 → b10)
+      const s3 = b(6);
+      tl.fromTo("#en-s3-cam", { scale: 1.12, x: 80, rotationY: 8 }, { scale: 1, x: -20, rotationY: -4, duration: 2.237, ease: "power2.out" }, s3);
+      tl.fromTo("#en-s3-title", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, s3 + 0.02);
+      tl.fromTo("#en-s3 .src", { opacity: 0, scale: 0.6, xPercent: -50, yPercent: -50 }, { opacity: 1, scale: 1, xPercent: -50, yPercent: -50, duration: 0.3, stagger: 0.06, ease: "back.out(1.6)" }, s3 + 0.05);
+      const wires = gsap.utils.toArray("#en-s3 .wire");
+      wires.forEach((p, i) => {
+        const L = p.getTotalLength();
+        tl.fromTo(p, { strokeDasharray: L, strokeDashoffset: L }, { strokeDashoffset: 0, duration: 0.35, ease: "power2.inOut" }, s3 + 0.25 + (i < 4 ? i * 0.04 : 0.25 + (i - 4) * 0.25));
+      });
+      tl.fromTo("#en-n-clean", { opacity: 0, scale: 0.6, xPercent: -50, yPercent: -50 }, { opacity: 1, scale: 1, xPercent: -50, yPercent: -50, duration: 0.3, ease: "back.out(1.6)" }, s3 + 0.5);
+      tl.fromTo("#en-n-tr", { opacity: 0, scale: 0.6, xPercent: -50, yPercent: -50 }, { opacity: 1, scale: 1, xPercent: -50, yPercent: -50, duration: 0.3, ease: "back.out(1.6)" }, s3 + 0.8);
+      tl.fromTo("#en-n-dw", { opacity: 0, scale: 0.6, xPercent: -50, yPercent: -50 }, { opacity: 1, scale: 1, xPercent: -50, yPercent: -50, duration: 0.3, ease: "back.out(1.6)" }, b(8));
+      // data pulses: one bright dash per wire, travelling
+      gsap.utils.toArray("#en-s3 .pulse").forEach((p, i) => {
+        const L = p.getTotalLength();
+        const t0 = s3 + 0.55 + (i < 4 ? i * 0.09 : 0.6 + (i - 4) * 0.3);
+        tl.fromTo(p, { strokeDasharray: `60 ${L + 60}`, strokeDashoffset: 60, opacity: 1 }, { strokeDashoffset: -L, duration: 0.5, ease: "none", repeat: 2, repeatDelay: 0.08 }, t0);
+      });
+      tl.fromTo("#en-s3-stats", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, s3 + 0.6);
+      const cnt = { r: 0, d: 0 };
+      const fmt = (v) => Math.round(v).toLocaleString("en-US");
+      tl.fromTo(cnt, { r: 0, d: 0 }, {
+        r: 1284512, d: 37904, duration: 1.3, ease: "power2.out",
+        onUpdate: () => {
+          document.getElementById("en-rows").textContent = fmt(cnt.r);
+          document.getElementById("en-dups").textContent = fmt(cnt.d);
+        },
+      }, s3 + 0.62);
+
+      // ---------- S4  converge (b10 → b14)
+      const s4 = b(10);
+      // seeded streams of digits flying into the core
+      let seed = 1337;
+      const rnd = () => ((seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296);
+      const host = document.getElementById("en-streams");
+      for (let i = 0; i < 34; i++) {
+        const el = document.createElement("div");
+        el.className = "stream";
+        let s = "";
+        for (let k = 0; k < 14; k++) s += Math.floor(rnd() * 10) + (k % 4 === 3 ? " " : "");
+        el.textContent = s;
+        host.appendChild(el);
+        const a = (i / 34) * Math.PI * 2 + rnd() * 0.2;
+        const r0 = 900 + rnd() * 300;
+        const deg = (a * 180) / Math.PI;
+        const t0 = s4 + rnd() * 1.5;
+        tl.fromTo(el,
+          { x: Math.cos(a) * r0, y: Math.sin(a) * r0 * 0.62, rotation: deg + 180, opacity: 0 },
+          { x: 0, y: 0, rotation: deg + 180, opacity: 1, duration: 0.65, ease: "power3.in" }, t0);
+        tl.to(el, { opacity: 0, duration: 0.05 }, t0 + 0.65);
+      }
+      tl.fromTo("#en-s4-cam", { rotationY: -14, z: -300 }, { rotationY: 10, z: 0, duration: 2.237, ease: "power1.inOut" }, s4);
+      tl.fromTo("#en-s4-a", { opacity: 0, z: -400, rotationY: 22 }, { opacity: 1, z: -100, rotationY: 22, duration: 0.4, ease: "expo.out" }, s4);
+      tl.fromTo("#en-s4-b", { opacity: 0, z: -400, rotationY: -22 }, { opacity: 1, z: -100, rotationY: -22, duration: 0.4, ease: "expo.out" }, s4 + 0.08);
+      tl.fromTo("#en-s4-c", { opacity: 0, z: -400 }, { opacity: 1, z: -100, duration: 0.4, ease: "expo.out" }, s4 + 0.16);
+      tl.fromTo("#en-core", { scale: 0.25, opacity: 0.6 }, { scale: 0.7, opacity: 1, duration: 1.1, ease: "power2.inOut" }, s4);
+      // n12 → n14: implosion
+      tl.to(".s4p", { x: (i) => [700, -380, 160][i], y: (i) => [270, 300, -330][i], scale: 0.05, opacity: 0, filter: "blur(10px)", duration: 1.0, ease: "power3.in" }, b(13) - 0.45);
+      tl.to("#en-core", { scale: 2.6, duration: 1.0, ease: "power3.in" }, b(13) - 0.45);
+      tl.fromTo("#en-flash-out", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power3.in" }, b(14) - 0.2);
+
+      window.__timelines["engine"] = tl;
+    })();
+  </script>
+</template>

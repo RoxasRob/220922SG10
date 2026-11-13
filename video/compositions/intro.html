@@ -1,0 +1,209 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #04070d;
+      font-family: "Outfit", sans-serif;
+      color: #e8f3ff;
+    }
+    #in-world {
+      position: absolute;
+      inset: 0;
+    }
+    /* perspective floor grid */
+    #in-floor-wrap {
+      position: absolute;
+      inset: 0;
+      perspective: 900px;
+      perspective-origin: 50% 40%;
+    }
+    #in-floor {
+      position: absolute;
+      left: -1200px;
+      width: 4320px;
+      top: 560px;
+      height: 1600px;
+      transform-origin: 50% 0%;
+      background-image:
+        linear-gradient(rgba(47, 123, 255, 0.35) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(47, 123, 255, 0.35) 2px, transparent 2px);
+      background-size: 120px 120px;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 100%);
+    }
+    #in-haze {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% 52%, rgba(47, 123, 255, 0.16), transparent 70%),
+        radial-gradient(ellipse 90% 90% at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.75) 100%);
+    }
+    #in-term {
+      position: absolute;
+      left: 190px;
+      top: 130px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 28px;
+      line-height: 1.6;
+      color: #7c93b5;
+    }
+    #in-term .ln {
+      white-space: pre;
+    }
+    #in-term .ok {
+      color: #19e6ff;
+    }
+    #in-term .pr {
+      color: #2f7bff;
+    }
+    #in-cam {
+      position: absolute;
+      inset: 0;
+      transform-origin: 50% 50%;
+    }
+    #in-block {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 340px;
+      text-align: center;
+    }
+    #in-name {
+      font-size: 128px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: #f2f8ff;
+    }
+    #in-streak {
+      margin: 26px auto 0;
+      width: 1100px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, #19e6ff 30%, #2f7bff 70%, transparent);
+      transform-origin: 0% 50%;
+    }
+    #in-role1 {
+      margin-top: 34px;
+      font-size: 60px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: #19e6ff;
+      text-shadow: 0 0 24px rgba(25, 230, 255, 0.55);
+    }
+    #in-role2 {
+      margin-top: 14px;
+      font-size: 60px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: #e8f3ff;
+    }
+    #in-role2 .w {
+      display: inline-block;
+      margin: 0 0.18em;
+    }
+    #in-stack {
+      margin-top: 44px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 28px;
+      letter-spacing: 0.2em;
+      color: #7c93b5;
+    }
+    #in-stack .w {
+      display: inline-block;
+      margin: 0 0.5em;
+    }
+    #in-stack .dot {
+      color: #2f7bff;
+    }
+    #in-crt {
+      position: absolute;
+      left: 0;
+      top: 538px;
+      width: 1920px;
+      height: 4px;
+      background: #dffbff;
+      box-shadow: 0 0 40px 10px rgba(25, 230, 255, 0.7);
+      transform-origin: 50% 50%;
+    }
+    #in-flash {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, #f4feff 0%, #19e6ff 45%, #0a3a80 100%);
+      opacity: 0;
+    }
+  </style>
+  <div id="root" data-composition-id="intro" data-width="1920" data-height="1080">
+    <div id="in-world">
+      <div id="in-floor-wrap" data-layout-ignore><div id="in-floor"></div></div>
+      <div id="in-haze" data-layout-ignore></div>
+
+      <div id="in-term">
+        <div class="ln" id="in-t1"><span class="pr">robert@core:~$</span> ./init_profile.sh</div>
+        <div class="ln" id="in-t2"><span class="ok">[ OK ]</span> Conectando motor analítico</div>
+        <div class="ln" id="in-t3"><span class="ok">[ OK ]</span> Cargando perfil profesional</div>
+      </div>
+
+      <div id="in-cam">
+        <div id="in-block">
+          <div id="in-name" data-var-text="name">ROBERT DE LA CRUZ</div>
+          <div id="in-streak"></div>
+          <div id="in-role1" data-var-text="role1">INGENIERO DE SISTEMAS</div>
+          <div id="in-role2">
+            <span class="w">ANALISTA</span><span class="w">DE</span><span class="w">DATOS</span>
+          </div>
+          <div id="in-stack">
+            <span class="w">PYTHON</span><span class="dot">·</span><span class="w">SQL</span
+            ><span class="dot">·</span><span class="w">ETL</span><span class="dot">·</span
+            ><span class="w">POWER BI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="in-crt" data-layout-ignore></div>
+    <div id="in-flash" data-layout-ignore></div>
+  </div>
+  <script>
+    (function () {
+      const B = (n) => 7.0 + 0.5593 * n; // beat grid in video seconds (intro starts at 0)
+      const tl = gsap.timeline({ paused: true });
+
+      // --- CRT power-on
+      tl.fromTo("#in-crt", { scaleX: 0, scaleY: 1, opacity: 1 }, { scaleX: 1, duration: 0.24, ease: "expo.out" }, 0.04);
+      tl.to("#in-crt", { scaleY: 40, opacity: 0, duration: 0.2, ease: "power2.out" }, 0.28);
+      tl.fromTo("#in-world", { opacity: 0, filter: "brightness(2.2)" }, { opacity: 1, filter: "brightness(1)", duration: 0.35, ease: "power2.out" }, 0.3);
+
+      // --- floor flows toward camera the whole scene (the world moves, titles stay still)
+      tl.fromTo("#in-floor", { rotationX: 72, backgroundPosition: "0px 0px" }, { rotationX: 72, backgroundPosition: "0px 1440px", duration: 7, ease: "none" }, 0);
+
+      // --- terminal typing (stepped clip = keystrokes)
+      [["#in-t1", 0.5, 32], ["#in-t2", 0.8, 33], ["#in-t3", 1.05, 34]].forEach(([s, t, n]) => {
+        tl.fromTo(s, { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.26, ease: `steps(${n})` }, t);
+      });
+      tl.to("#in-term", { opacity: 0.35, duration: 0.3, ease: "power2.out" }, B(-10));
+
+      // --- Beat 1: name slams
+      tl.fromTo("#in-name", { opacity: 0, scale: 1.35, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.24, ease: "expo.out" }, B(-10) - 0.03);
+      tl.fromTo("#in-streak", { scaleX: 0, opacity: 1 }, { scaleX: 1, duration: 0.35, ease: "expo.out" }, B(-10));
+      tl.to("#in-streak", { opacity: 0.45, duration: 0.4, ease: "power2.out" }, B(-10) + 0.4);
+
+      // --- Beat 2: role 1 mask sweep
+      tl.fromTo("#in-role1", { clipPath: "inset(0 100% 0 0)", opacity: 1 }, { clipPath: "inset(0 0% 0 0)", duration: 0.32, ease: "expo.out" }, B(-8) - 0.02);
+
+      // --- Beat 3: role 2 per-word blur in
+      tl.fromTo("#in-role2 .w", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.14, stagger: 0.07, ease: "power2.out" }, B(-6) - 0.02);
+
+      // --- n-4: stack line, per word grey to ink
+      tl.fromTo("#in-stack .w, #in-stack .dot", { opacity: 0 }, { opacity: 1, duration: 0.12, stagger: 0.06, ease: "power1.out" }, B(-4));
+
+      // --- push-in through the text into the system
+      tl.fromTo("#in-cam", { scale: 1, filter: "blur(0px)" }, { scale: 14, filter: "blur(10px)", duration: 1.12, ease: "power3.in" }, B(-2));
+      tl.to("#in-term", { opacity: 0, x: -200, duration: 0.6, ease: "power3.in" }, B(-2) + 0.3);
+      tl.to("#in-floor-wrap", { scale: 1.6, opacity: 0.4, duration: 1.12, ease: "power3.in" }, B(-2));
+      tl.fromTo("#in-flash", { opacity: 0 }, { opacity: 1, duration: 0.26, ease: "power3.in" }, 6.72);
+
+      window.__timelines["intro"] = tl;
+    })();
+  </script>
+</template>
