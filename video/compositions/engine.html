@@ -213,7 +213,7 @@
     <div class="en-vig" data-layout-ignore></div>
 
     <!-- S1 · Python / Pandas -->
-    <div id="en-s1" class="shot clip" data-start="0" data-duration="1.119" data-layout-allow-overflow>
+    <div id="en-s1" class="shot clip" data-start="0" data-duration="1.75" data-layout-allow-overflow>
       <div class="persp">
         <div class="cam" id="en-s1-cam">
           <div class="ed" id="en-py" style="left: 320px; top: 190px">
@@ -233,7 +233,7 @@
     </div>
 
     <!-- S2 · SQL (match cut, same frame) → pull back to 3 panels -->
-    <div id="en-s2" class="shot clip" data-start="1.119" data-duration="2.237" data-layout-allow-overflow data-layout-allow-overlap>
+    <div id="en-s2" class="shot clip" data-start="1.75" data-duration="2.625" data-layout-allow-overflow data-layout-allow-overlap>
       <div class="persp">
         <div class="cam" id="en-s2-cam">
           <div class="mini" data-layout-ignore id="en-s2-left" style="left: -260px; top: 300px">
@@ -267,7 +267,7 @@
     </div>
 
     <!-- S3 · pipeline: sources → limpieza → transformación → warehouse -->
-    <div id="en-s3" class="shot clip" data-start="3.356" data-duration="2.237" data-layout-allow-overlap>
+    <div id="en-s3" class="shot clip" data-start="4.375" data-duration="1.75" data-layout-allow-overlap>
       <div class="persp">
         <div class="cam" id="en-s3-cam">
           <div id="en-s3-title">PIPELINE <b>ETL</b> · LIMPIEZA Y ESTRUCTURACIÓN</div>
@@ -305,7 +305,7 @@
     </div>
 
     <!-- S4 · wide 3D: everything converges into the core -->
-    <div id="en-s4" class="shot clip" data-start="5.593" data-duration="2.237" data-layout-allow-overflow data-layout-allow-overlap>
+    <div id="en-s4" class="shot clip" data-start="6.125" data-duration="1.75" data-layout-allow-overflow data-layout-allow-overlap>
       <div class="persp">
         <div class="cam" id="en-s4-cam">
           <div id="en-streams" data-layout-ignore></div>
@@ -333,22 +333,24 @@
   </div>
   <script>
     (function () {
-      const b = (n) => 0.5593 * n; // local beat grid (scene starts on drum entry)
+      // shot boundaries on the 0.875 s grid (scene starts on the snare at v=6.955; drop at 7.875)
+      const M = { 0: 0, 2: 1.75, 4: 2.625, 6: 4.375, 8: 5.25, 10: 6.125, 13: 7.3, 14: 7.875 };
+      const b = (n) => M[n];
       const tl = gsap.timeline({ paused: true });
 
       // flash carried over from the intro push-in
       tl.fromTo("#en-flash-in", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "power2.out" }, 0);
 
       // ---------- S1  Python (0 → b2)
-      tl.fromTo("#en-s1-cam", { x: 160, z: 380, rotationY: -16 }, { x: -40, z: 260, rotationY: -10, duration: 1.119, ease: "power2.out" }, 0);
+      tl.fromTo("#en-s1-cam", { x: 160, z: 380, rotationY: -16 }, { x: -40, z: 260, rotationY: -10, duration: 1.75, ease: "power2.out" }, 0);
       gsap.utils.toArray("#en-s1 .py-l").forEach((el, i) => {
         const n = el.textContent.length;
-        tl.fromTo(el, { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.14, ease: `steps(${n})` }, 0.06 + i * 0.13);
+        tl.fromTo(el, { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.18, ease: `steps(${n})` }, 0.06 + i * 0.2);
       });
 
       // ---------- S2  SQL (b2 → b6) — match cut: same panel frame, the camera keeps travelling
       const s2 = b(2);
-      tl.fromTo("#en-s2-cam", { x: -40, z: 260, rotationY: -10, scale: 1.04 }, { x: -120, rotationY: -6, scale: 1, duration: 1.118, ease: "power2.out" }, s2);
+      tl.fromTo("#en-s2-cam", { x: -40, z: 260, rotationY: -10, scale: 1.04 }, { x: -120, rotationY: -6, scale: 1, duration: 0.875, ease: "power2.out" }, s2);
       gsap.utils.toArray("#en-s2 .sq-l").forEach((el, i) => {
         const n = el.textContent.length;
         tl.fromTo(el, { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.13, ease: `steps(${n})` }, s2 + 0.04 + i * 0.12);
@@ -365,7 +367,7 @@
 
       // ---------- S3  pipeline (b6 → b10)
       const s3 = b(6);
-      tl.fromTo("#en-s3-cam", { scale: 1.12, x: 80, rotationY: 8 }, { scale: 1, x: -20, rotationY: -4, duration: 2.237, ease: "power2.out" }, s3);
+      tl.fromTo("#en-s3-cam", { scale: 1.12, x: 80, rotationY: 8 }, { scale: 1, x: -20, rotationY: -4, duration: 1.75, ease: "power2.out" }, s3);
       tl.fromTo("#en-s3-title", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, s3 + 0.02);
       tl.fromTo("#en-s3 .src", { opacity: 0, scale: 0.6, xPercent: -50, yPercent: -50 }, { opacity: 1, scale: 1, xPercent: -50, yPercent: -50, duration: 0.3, stagger: 0.06, ease: "back.out(1.6)" }, s3 + 0.05);
       const wires = gsap.utils.toArray("#en-s3 .wire");
@@ -409,13 +411,13 @@
         const a = (i / 34) * Math.PI * 2 + rnd() * 0.2;
         const r0 = 900 + rnd() * 300;
         const deg = (a * 180) / Math.PI;
-        const t0 = s4 + rnd() * 1.5;
+        const t0 = s4 + rnd() * 1.0;
         tl.fromTo(el,
           { x: Math.cos(a) * r0, y: Math.sin(a) * r0 * 0.62, rotation: deg + 180, opacity: 0 },
           { x: 0, y: 0, rotation: deg + 180, opacity: 1, duration: 0.65, ease: "power3.in" }, t0);
         tl.to(el, { opacity: 0, duration: 0.05 }, t0 + 0.65);
       }
-      tl.fromTo("#en-s4-cam", { rotationY: -14, z: -300 }, { rotationY: 10, z: 0, duration: 2.237, ease: "power1.inOut" }, s4);
+      tl.fromTo("#en-s4-cam", { rotationY: -14, z: -300 }, { rotationY: 10, z: 0, duration: 1.75, ease: "power1.inOut" }, s4);
       tl.fromTo("#en-s4-a", { opacity: 0, z: -400, rotationY: 22 }, { opacity: 1, z: -100, rotationY: 22, duration: 0.4, ease: "expo.out" }, s4);
       tl.fromTo("#en-s4-b", { opacity: 0, z: -400, rotationY: -22 }, { opacity: 1, z: -100, rotationY: -22, duration: 0.4, ease: "expo.out" }, s4 + 0.08);
       tl.fromTo("#en-s4-c", { opacity: 0, z: -400 }, { opacity: 1, z: -100, duration: 0.4, ease: "expo.out" }, s4 + 0.16);

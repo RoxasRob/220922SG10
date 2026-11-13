@@ -60,7 +60,7 @@
         data-composition-id="intro"
         data-composition-src="compositions/intro.html"
         data-start="0"
-        data-duration="7"
+        data-duration="6.955"
         data-track-index="1"
         data-track-kind="graphics"
         data-width="1920"
@@ -70,8 +70,8 @@
         id="engine"
         data-composition-id="engine"
         data-composition-src="compositions/engine.html"
-        data-start="7"
-        data-duration="7.83"
+        data-start="6.955"
+        data-duration="7.875"
         data-track-index="1"
         data-track-kind="graphics"
         data-width="1920"
@@ -82,7 +82,7 @@
         data-composition-id="impact"
         data-composition-src="compositions/impact.html"
         data-start="14.83"
-        data-duration="8.95"
+        data-duration="8.75"
         data-track-index="1"
         data-track-kind="graphics"
         data-width="1920"
@@ -92,27 +92,55 @@
         id="outro"
         data-composition-id="outro"
         data-composition-src="compositions/outro.html"
-        data-start="23.78"
-        data-duration="6.22"
+        data-start="23.58"
+        data-duration="6.42"
         data-track-index="1"
         data-track-kind="graphics"
         data-width="1920"
         data-height="1080"
       ></div>
 
-      <!-- Música: "ice (slowed)". Arranca en 1.97 s de la pista para que la batería
-           caiga en v=7.00 y el drop en v=14.83. -->
+      <!-- Música: "Like That" (guitar remix, slowed + reverb), ~68.6 BPM, beat 0.875 s.
+           Arranca en 89.545 s de la pista: corte de bajo en v=11.45, drop en v=14.83. -->
       <audio
         id="music"
         class="clip"
-        src="assets/ice.m4a"
+        src="assets/likethat.m4a"
         data-start="0"
         data-duration="30"
-        data-media-start="1.97"
-        data-volume="1"
+        data-media-start="89.545"
+        data-volume="0.8"
+        data-fade-in="0.3"
         data-fade-out="2"
         data-track-index="5"
       ></audio>
+
+      <!-- Efectos: cada uno colocado para que su pico caiga 1 frame después de la imagen. -->
+      <audio id="sfx-power" class="clip" src="assets/sfx/ping.mp3" data-start="0.012" data-duration="1.31" data-volume="0.35" data-track-index="6"></audio>
+      <audio id="sfx-boot" class="clip" src="assets/sfx/typing.mp3" data-start="0.079" data-duration="1.531" data-volume="0.25" data-track-index="7"></audio>
+      <audio id="sfx-name" class="clip" src="assets/sfx/impact-bass-1.mp3" data-start="1.665" data-duration="2.106" data-volume="0.55" data-track-index="6"></audio>
+      <audio id="sfx-role1" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="2.451" data-duration="0.565" data-volume="0.35" data-track-index="7"></audio>
+      <audio id="sfx-role2" class="clip" src="assets/sfx/pop.mp3" data-start="3.368" data-duration="0.71" data-volume="0.35" data-track-index="7"></audio>
+      <audio id="sfx-push" class="clip" src="assets/sfx/whoosh-cinematic.mp3" data-start="4.485" data-duration="5.534" data-volume="0.45" data-track-index="6"></audio>
+      <audio id="sfx-enter" class="clip" src="assets/sfx/glitch-1.mp3" data-start="6.79" data-duration="2.628" data-volume="0.25" data-track-index="7"></audio>
+      <audio id="sfx-type-py" class="clip" src="assets/sfx/typing.mp3" data-start="6.599" data-duration="1.531" data-volume="0.22" data-track-index="8"></audio>
+      <audio id="sfx-cut-sql" class="clip" src="assets/sfx/whoosh.mp3" data-start="8.576" data-duration="0.565" data-volume="0.3" data-track-index="8"></audio>
+      <audio id="sfx-type-sql" class="clip" src="assets/sfx/typing.mp3" data-start="8.329" data-duration="1.531" data-volume="0.22" data-track-index="9"></audio>
+      <audio id="sfx-pullback" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="9.451" data-duration="0.565" data-volume="0.28" data-track-index="7"></audio>
+      <audio id="sfx-nodes" class="clip" src="assets/sfx/pop.mp3" data-start="11.293" data-duration="0.71" data-volume="0.3" data-track-index="6"></audio>
+      <audio id="sfx-warehouse" class="clip" src="assets/sfx/ping.mp3" data-start="11.917" data-duration="1.31" data-volume="0.3" data-track-index="7"></audio>
+      <audio id="sfx-riser" class="clip" src="assets/sfx/riser.mp3" data-start="10.653" data-duration="10.022" data-volume="0.4" data-track-index="8"></audio>
+      <audio id="sfx-drop" class="clip" src="assets/sfx/impact-bass-1.mp3" data-start="14.79" data-duration="2.106" data-volume="0.7" data-track-index="6"></audio>
+      <audio id="sfx-bars" class="clip" src="assets/sfx/pop.mp3" data-start="15.618" data-duration="0.71" data-volume="0.3" data-track-index="7"></audio>
+      <audio id="sfx-line" class="clip" src="assets/sfx/sparkle.mp3" data-start="17.461" data-duration="1.792" data-volume="0.25" data-track-index="6"></audio>
+      <audio id="sfx-donut" class="clip" src="assets/sfx/ping.mp3" data-start="18.042" data-duration="1.31" data-volume="0.28" data-track-index="7"></audio>
+      <audio id="sfx-dof" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="19.076" data-duration="0.565" data-volume="0.28" data-track-index="9"></audio>
+      <audio id="sfx-orbit" class="clip" src="assets/sfx/whoosh.mp3" data-start="20.826" data-duration="0.565" data-volume="0.28" data-track-index="6"></audio>
+      <audio id="sfx-tip" class="clip" src="assets/sfx/click-soft.mp3" data-start="21.115" data-duration="0.356" data-volume="0.4" data-track-index="7"></audio>
+      <audio id="sfx-whip" class="clip" src="assets/sfx/whoosh.mp3" data-start="23.371" data-duration="0.565" data-volume="0.5" data-track-index="6"></audio>
+      <audio id="sfx-shine" class="clip" src="assets/sfx/sparkle.mp3" data-start="25.336" data-duration="1.792" data-volume="0.3" data-track-index="6"></audio>
+      <audio id="sfx-sig" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="26.076" data-duration="0.565" data-volume="0.18" data-track-index="7"></audio>
+      <audio id="sfx-icons" class="clip" src="assets/sfx/pop.mp3" data-start="26.993" data-duration="0.71" data-volume="0.25" data-track-index="7"></audio>
     </div>
     <script>
       window.__timelines = window.__timelines || {};

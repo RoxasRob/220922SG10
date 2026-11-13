@@ -166,7 +166,7 @@
   </div>
   <script>
     (function () {
-      const B = (n) => 7.0 + 0.5593 * n; // beat grid in video seconds (intro starts at 0)
+      const B = (n) => 14.83 + 0.875 * n; // beat grid in video seconds (drop = n0 at 14.83)
       const tl = gsap.timeline({ paused: true });
 
       // --- CRT power-on
@@ -175,33 +175,33 @@
       tl.fromTo("#in-world", { opacity: 0, filter: "brightness(2.2)" }, { opacity: 1, filter: "brightness(1)", duration: 0.35, ease: "power2.out" }, 0.3);
 
       // --- floor flows toward camera the whole scene (the world moves, titles stay still)
-      tl.fromTo("#in-floor", { rotationX: 72, backgroundPosition: "0px 0px" }, { rotationX: 72, backgroundPosition: "0px 1440px", duration: 7, ease: "none" }, 0);
+      tl.fromTo("#in-floor", { rotationX: 72, backgroundPosition: "0px 0px" }, { rotationX: 72, backgroundPosition: "0px 1440px", duration: 6.955, ease: "none" }, 0);
 
       // --- terminal typing (stepped clip = keystrokes)
       [["#in-t1", 0.5, 32], ["#in-t2", 0.8, 33], ["#in-t3", 1.05, 34]].forEach(([s, t, n]) => {
         tl.fromTo(s, { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.26, ease: `steps(${n})` }, t);
       });
-      tl.to("#in-term", { opacity: 0.35, duration: 0.3, ease: "power2.out" }, B(-10));
+      tl.to("#in-term", { opacity: 0.35, duration: 0.3, ease: "power2.out" }, B(-15));
 
       // --- Beat 1: name slams
-      tl.fromTo("#in-name", { opacity: 0, scale: 1.35, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.24, ease: "expo.out" }, B(-10) - 0.03);
-      tl.fromTo("#in-streak", { scaleX: 0, opacity: 1 }, { scaleX: 1, duration: 0.35, ease: "expo.out" }, B(-10));
-      tl.to("#in-streak", { opacity: 0.45, duration: 0.4, ease: "power2.out" }, B(-10) + 0.4);
+      tl.fromTo("#in-name", { opacity: 0, scale: 1.35, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.24, ease: "expo.out" }, B(-15) - 0.03);
+      tl.fromTo("#in-streak", { scaleX: 0, opacity: 1 }, { scaleX: 1, duration: 0.35, ease: "expo.out" }, B(-15));
+      tl.to("#in-streak", { opacity: 0.45, duration: 0.4, ease: "power2.out" }, B(-15) + 0.4);
 
       // --- Beat 2: role 1 mask sweep
-      tl.fromTo("#in-role1", { clipPath: "inset(0 100% 0 0)", opacity: 1 }, { clipPath: "inset(0 0% 0 0)", duration: 0.32, ease: "expo.out" }, B(-8) - 0.02);
+      tl.fromTo("#in-role1", { clipPath: "inset(0 100% 0 0)", opacity: 1 }, { clipPath: "inset(0 0% 0 0)", duration: 0.32, ease: "expo.out" }, B(-14) - 0.02);
 
       // --- Beat 3: role 2 per-word blur in
-      tl.fromTo("#in-role2 .w", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.14, stagger: 0.07, ease: "power2.out" }, B(-6) - 0.02);
+      tl.fromTo("#in-role2 .w", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.14, stagger: 0.07, ease: "power2.out" }, B(-13) - 0.02);
 
       // --- n-4: stack line, per word grey to ink
-      tl.fromTo("#in-stack .w, #in-stack .dot", { opacity: 0 }, { opacity: 1, duration: 0.12, stagger: 0.06, ease: "power1.out" }, B(-4));
+      tl.fromTo("#in-stack .w, #in-stack .dot", { opacity: 0 }, { opacity: 1, duration: 0.12, stagger: 0.06, ease: "power1.out" }, B(-12));
 
       // --- push-in through the text into the system
-      tl.fromTo("#in-cam", { scale: 1, filter: "blur(0px)" }, { scale: 14, filter: "blur(10px)", duration: 1.12, ease: "power3.in" }, B(-2));
-      tl.to("#in-term", { opacity: 0, x: -200, duration: 0.6, ease: "power3.in" }, B(-2) + 0.3);
-      tl.to("#in-floor-wrap", { scale: 1.6, opacity: 0.4, duration: 1.12, ease: "power3.in" }, B(-2));
-      tl.fromTo("#in-flash", { opacity: 0 }, { opacity: 1, duration: 0.26, ease: "power3.in" }, 6.72);
+      tl.fromTo("#in-cam", { scale: 1, filter: "blur(0px)" }, { scale: 14, filter: "blur(10px)", duration: 0.875, ease: "power3.in" }, B(-10));
+      tl.to("#in-term", { opacity: 0, x: -200, duration: 0.5, ease: "power3.in" }, B(-10) + 0.2);
+      tl.to("#in-floor-wrap", { scale: 1.6, opacity: 0.4, duration: 0.875, ease: "power3.in" }, B(-10));
+      tl.fromTo("#in-flash", { opacity: 0 }, { opacity: 1, duration: 0.26, ease: "power3.in" }, 6.695);
 
       window.__timelines["intro"] = tl;
     })();

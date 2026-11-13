@@ -346,7 +346,9 @@
   </div>
   <script>
     (function () {
-      const b = (n) => 0.5593 * (n - 14); // scene starts on the drop (n = 14)
+      // beat-locked moments on the 0.875 s grid (scene starts on the drop)
+      const M = { 16: 0.875, 18: 2.625, 20: 3.5, 22: 4.375, 26: 6.125, 28: 7.0 };
+      const b = (n) => M[n];
       const tl = gsap.timeline({ paused: true });
 
       // ---------- DROP: explosion
@@ -390,8 +392,8 @@
       tl.to("#im-cam", { x: 0, y: 0, z: -260, rotationY: 10, rotationX: 6, duration: 0.6, ease: "power2.inOut" }, b(28) - 0.15);
       tl.to(["#im-line", "#im-donut", "#im-k2", "#im-k3", "#im-k4"], { filter: "blur(0px)", opacity: 1, duration: 0.45, ease: "power2.inOut" }, b(28) - 0.1);
       // whip pan out (left)
-      tl.to("#im-cam", { x: -2600, rotationY: 30, duration: 0.32, ease: "power2.in" }, 8.95 - 0.33);
-      tl.fromTo("#im-persp", { filter: "blur(0px)" }, { filter: "blur(18px)", duration: 0.32, ease: "power2.in" }, 8.95 - 0.33);
+      tl.to("#im-cam", { x: -2600, rotationY: 30, duration: 0.32, ease: "power2.in" }, 8.75 - 0.33);
+      tl.fromTo("#im-persp", { filter: "blur(0px)" }, { filter: "blur(18px)", duration: 0.32, ease: "power2.in" }, 8.75 - 0.33);
 
       // ---------- data performs
       // KPI roll-ups

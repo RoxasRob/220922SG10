@@ -2,9 +2,9 @@
 
 GOAL:    En 30 s el espectador sabe quién es Robert, qué hace (sistemas + datos) y se queda con "Transformando datos en decisiones."
 OUTPUT:  HyperFrames, 1920 x 1080, 30 fps
-TIME:    30 s x 30 = 900 frames. Música: "ice (slowed)", 107.3 BPM, 1 beat = 0.5593 s = 16.8 frames.
-         La pista arranca en 1.97 s (data-media-start) → la batería entra en v=7.00 s, el drop de bajo en v=14.83 s.
-         Rejilla: beat(n) = 7.00 + 0.5593·n (n negativo en la intro). Cambios de plano en n ≡ 2 (mod 4).
+TIME:    30 s x 30 = 900 frames. Música v2: "Like That" (guitar remix, slowed + reverb), ~68.6 BPM, 1 beat = 0.875 s = 26.25 frames.
+         La pista arranca en 89.545 s → corte de bajo en v=11.45, drop en v=14.83. Rejilla: beat(n) = 14.83 + 0.875·n.
+         (Los tiempos de SHOTS de abajo son de la v1; los vigentes están en REVIEW.md.)
 
 LOOK (pedido explícito del cliente — anula el BANNED por defecto de "vacío oscuro / neón / glass"):
   ground   #04070D, rejilla de 80 px a 4% de opacidad, viñeta 35%

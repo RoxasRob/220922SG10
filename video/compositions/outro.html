@@ -137,7 +137,9 @@
   </div>
   <script>
     (function () {
-      const b = (n) => 0.5593 * (n - 30); // scene starts on n = 30
+      // moments on the 0.875 s grid (scene starts at v=23.58)
+      const M = { 31: 0.875, 32: 1.75, 34: 2.625, 35: 3.5 };
+      const b = (n) => M[n];
       const tl = gsap.timeline({ paused: true });
 
       // whip pan arrival: a light smear crosses right → left, the clean ground lands under it
@@ -156,7 +158,7 @@
       tl.fromTo(["#out-li", "#out-em"], { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, stagger: 0.1, ease: "power2.out" }, b(35));
 
       // clean fade to black, fully black just before 30.0 s
-      tl.fromTo("#out-black", { opacity: 0 }, { opacity: 1, duration: 1.25, ease: "power1.inOut" }, 6.22 - 1.3);
+      tl.fromTo("#out-black", { opacity: 0 }, { opacity: 1, duration: 1.25, ease: "power1.inOut" }, 6.42 - 1.3);
 
       window.__timelines["outro"] = tl;
     })();
