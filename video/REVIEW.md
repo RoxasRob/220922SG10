@@ -16,7 +16,7 @@
 
 ## Medido vs. visto
 - `hyperframes check`: 0 errores. Revisados los frames de cada beat, los tres cortes (6.8–7.2, 14.63–15.03, 23.58–23.98) y la vista de teléfono.
-- El audio se **midió** (BPM, caja, banda de graves para el corte y el drop; mezcla final −10.3 LUFS, pico −1.1 dBTP, sin clipping; salto de 72→83 dB en el drop), no se escuchó.
+- El audio se **midió** (BPM, caja, banda de graves para el corte y el drop; mezcla final −12.9 LUFS, pico −1.9 dBTP, sin clipping; efectos de 0 a +12 dB sobre la música en sus golpes), no se escuchó.
 
 ## Advertencias mantenidas a propósito
 - `first_frame_empty`: el frame 0 es negro porque el video empieza con un encendido de pantalla (pedido en el guion).
@@ -29,4 +29,6 @@
 
 ## Plano más débil / con más tiempo
 - S1 (Python, 1.1 s) es muy corto para leer el código: funciona como ritmo, no como lectura.
-- La mezcla está a −10.3 LUFS (fuerte, como la canción); para redes conviene −14 LUFS.
+- **Mezcla v3 (rebalanceo):** música a 0.45 (−7 dB) con ducking breve (a 0.6) bajo los efectos suaves; cada efecto con
+  ganancia calculada para quedar al nivel de la música o 2–6 dB por encima en los golpes (nombre, drop, barras, whip);
+  ping/click/typing con nodo gain +5…+9 dB; bus "sfx" con limitador a −6 dB. Resultado medido: −12.9 LUFS, pico −1.9 dBTP, sin clipping.
